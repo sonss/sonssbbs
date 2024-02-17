@@ -1,63 +1,46 @@
-## Flarum 0x
-Customized [flarum](https://github.com/flarum/flarum) for the [0xFFFF Community](https://0xffff.one/).
+## sonssBBS
+为 [sonssBBS](https://0xffff.one/) 定制的 [flarum](https://github.com/flarum/flarum)。
 
-We are working on:
+我们正在努力：
 
-1. Customisation based on the 0xFFFF Community needs.
-2. A modern, cloud-based Flarum Development & Deployment workflow.
-3. Encourage more people to participate and contribute to the Flarum Community.
+1. 根据 sonssBBS 社区需求进行定制。
+2. 基于云的现代 Flarum 开发和部署工作流程。
+3. 鼓励更多人参与Flarum社区并为Flarum社区做出贡献。
 
-## Customizations
-The customizations of **Flarum 0x** consists of these parts:
-1. Initialized [Flarum Skeleton](https://github.com/flarum/flarum) with our custom `composer.json` / `composer.lock` config (contains the extensions we are using).
-2. Patches for the extensions in `vendor/` to make some small changes without publishing new Composer Packages (see [patches/README.md](patches/README.md)).
-3. Custom [flarum extenders](https://docs.flarum.org/extend/start#extenders) in `extend.php`.
-4. Custom third party extension integrated into this repo as submodules.
+## 定制
+**Flarum sonssBBS** 的定制由以下部分组成：
+1. 使用我们自定义的 `composer.json` / `composer.lock` 配置初始化 [Flarum Skeleton](https://github.com/flarum/flarum)（包含我们正在使用的扩展）。
+2. 对 `vendor/` 中的扩展进行修补，以进行一些小的更改，而无需发布新的 Composer 包（请参阅 [patches/README.md](patches/README.md)）。
+3. `extend.php` 中的自定义 [flarum 扩展程序](https://docs.flarum.org/extend/start#extenders)。
+4. 自定义第三方扩展作为子模块集成到此存储库中。
 
-The features we have customised include:
-1. Support global assets CDN config.
-2. Save avatars to S3-compatible Storage instead of local disk (thanks to [askvortsov1/flarum-azure-poc](https://github.com/askvortsov1/flarum-azure-poc)).
-3. Add support for [blomstra/flarum-redis](https://github.com/blomstra/flarum-redis) extension (for Queue / Cache / Session), enable the Queue Worker to consume the [Background Tasks](https://docs.flarum.org/internal/package-manager#background-tasks) asynchronously.
-4. Add support for custom head HTML like add some `<script>` / `<link>` / `<meta>` tags in `config.php`.
-5. Replace some hard-coded JsDelivr resource URLs with ByteDance's cdn (for mainland China users).
-6. All the extensions required at `composer.json`
+我们定制的功能包括：
+1. 支持全局资产CDN配置。
+2. 将头像保存到 S3 兼容存储而不是本地磁盘（感谢 [askvortsov1/flarum-azure-poc](https://github.com/askvortsov1/flarum-azure-poc)）。
+3. 添加对 [blomstra/flarum-redis](https://github.com/blomstra/flarum-redis) 扩展的支持（针对队列/缓存/会话），使队列工作器能够使用[后台任务](https:// /docs.flarum.org/internal/package-manager#background-tasks）异步。
+4. 添加对自定义头 HTML 的支持，例如在“config.php”中添加一些“<script>”/“<link>”/“<meta>”标签。
+5. 将一些硬编码的 JsDelivr 资源 URL 替换为字节跳动的 cdn（适用于中国大陆用户）。
+6. `composer.json` 所需的所有扩展
 7. ...
 
-## Local Development Env Setup
-We are using [Development Containers](https://containers.dev/) with our LNMP config to save the time required to configure the environment.
+## 本地开发环境设置
+我们将[开发容器](https://containers.dev/) 与 LNMP 配置一起使用，以节省配置环境所需的时间。
 
-Steps to configure your local development environment:
-1. Install Docker (Docker Desktop / Docker CE / OrbStack, etc...) on your dev machine.
-2. Install VSCode and [Dev Containers VSCode extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
-3. Just clone this repository and use VSCode open it, then VSCode would notify you to open the repository in the Dev Container.
-4. After the Dev Container has initialised, open `http://localhost:8080` and see your Flarum app instance (It will automatically forward the ports to local).
+配置本地开发环境的步骤：
+1. 在您的开发计算机上安装 Docker（Docker Desktop / Docker CE / OrbStack 等）。
+2. 安装 VSCode 和 [开发容器 VSCode 扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)。
+3. 只需克隆这个存储库并使用 VSCode 打开它，然后 VSCode 就会通知您在开发容器中打开该存储库。
+4. 开发容器初始化后，打开 `http://localhost:8080` 并查看您的 Flarum 应用程序实例（它会自动将端口转发到本地）。
 
-Or you can just create a new GitHub codespace with this repo, then start development.
+或者您可以使用此存储库创建一个新的 GitHub 代码空间，然后开始开发。
 
-## Production Deployment
-Basically running a **Flarum 0x** website requires two Docker container instances.
+## 生产部署
+基本上运行 **sonssBBS** 网站需要两个 Docker 容器实例。
 
 1. **Flarum 0x**, latest pre-built image: `ghcr.io/0xffff-one/flarum-0x:latest`.
-2. **A MySQL-compatible DBMS**, MySQL, MariaDB or other, use MySQL with [ngram](https://dev.mysql.com/doc/refman/5.7/en/fulltext-search-ngram.html) support for CJK full-text search.
+2. **兼容 MySQL 的 DBMS**、MySQL、MariaDB 或其他，使用支持 [ngram](https://dev.mysql.com/doc/refman/5.7/en/fulltext-search-ngram.html) 的 MySQL用于 CJK 全文搜索。
 
-You can deploy them via [Docker Compose](./docker-compose.yml).
-
-## Contribution
-Any contributions are welcome. Please feel free to:
-
-* Open an Issue
-* Create a Pull Request
-* Comment in an Issue / PR / commit
-* Open a Discussion in [0xFFFF Forum](https://0xffff.one/) / Discord / QQ Group
-
-Thank you for willing to contribute to this project!
-
-### TODO
-
- - [x] new Dev Envionment setup config
- - [x] build process for Front-end Patching
- - [x] Update latest README.md about Dev Env setup and Production deployment
- - [x] Optimize the production Docker image config
+您可以通过 [Docker Compose](./docker-compose.yml) 部署它们。
 
 ## Contributors
 This project exists thanks to all the people who contribute.
